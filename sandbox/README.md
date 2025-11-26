@@ -2,6 +2,8 @@
 
 This directory contains a sandbox Wagtail project for testing and development purposes. It includes basic configurations and apps to facilitate testing of the `wagtail-orderable` package.
 
+- Last tested with Wagtail 7.2 and Django 5.2
+
 ## Run the sandbox
 
 Set up you virtual environment and install the requirements:
