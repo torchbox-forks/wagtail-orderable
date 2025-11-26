@@ -7,7 +7,14 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 INSTALL_REQUIRES = [
-    "wagtail>=4.1",
+    "wagtail>=6.3",
+    "wagtail-modeladmin>=2.2.0",
+]
+
+DEVELOPMENT_REQUIRES = [
+    "black",
+    "isort",
+    "flake8",
 ]
 
 CLASSIFIERS = [
@@ -17,18 +24,20 @@ CLASSIFIERS = [
     'Operating System :: OS Independent',
     'Programming Language :: Python',
     "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
     'License :: OSI Approved :: zlib/libpng License',
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Framework :: Wagtail",
-    "Framework :: Wagtail :: 4",
-    "Framework :: Wagtail :: 5",
+    "Framework :: Wagtail :: 6",
+    "Framework :: Wagtail :: 7",
+
 ]
 
 class VerifyVersionCommand(install):
@@ -53,6 +62,9 @@ setup(
     author_email='elton2048@gmail.com',
     url='https://github.com/elton2048/wagtail-orderable',
     install_requires=INSTALL_REQUIRES,
+    extras_require={
+        'dev': DEVELOPMENT_REQUIRES,
+    },
     license='MIT',
     packages=find_packages(),
     include_package_data=True,

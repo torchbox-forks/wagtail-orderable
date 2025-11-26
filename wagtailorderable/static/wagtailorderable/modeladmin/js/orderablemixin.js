@@ -4,7 +4,7 @@ $(function() {
     var listing_thead = $('.listing thead');
     var sorted_cols = listing_thead.find('th.sorted');
     order_header.find('a').addClass('text-replace').removeClass('icon icon-arrow-down-after icon-arrow-up-after');
-    order_header.find('a').html('<span class="icon icon-order" aria-hidden="true"></span> Sort');
+    order_header.find('a').html('<svg class="icon icon-order" aria-hidden="true"><use href="#icon-order"></use></svg>');
     if(sorted_cols.length == 1 && order_header.hasClass('sorted') && order_header.hasClass('ascending')){
         order_header.find('a').attr('title', 'Restore default list ordering').attr('href', '?');
         listing_tbody.sortable({
@@ -48,10 +48,14 @@ $(function() {
                     $.ajax({
                         url: 'reorder/' + movedObjectId + '/?' + params.toString(),
                         success: function(data, textStatus, xhr) {
-                            addMessage('success', '"' + movedObjectTitle + '" has been moved successfully.');
+                            const text = '"' + movedObjectTitle + '" has been moved successfully.';
+                            const event = new CustomEvent('w-messages:add', { detail: { clear: true, text,  type: 'success' } });
+                            document.dispatchEvent(event);
                         },
                         error: function(data, textStatus, xhr) {
-                            addMessage('error', '"' + movedObjectTitle + '" could not be moved.');
+                            const text = '"' + movedObjectTitle + '" could not be moved.';
+                            const event = new CustomEvent('w-messages:add', { detail: { clear: true, text,  type: 'error' } });
+                            document.dispatchEvent(event);
                             listing_tbody.sortable("cancel");
                         }
                     });
